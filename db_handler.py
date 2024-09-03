@@ -45,7 +45,7 @@ class DBHandler:
         except Error as e:
             print(f"Error executing query: {e}")
             return None
-
+    #direct query
     @staticmethod
     def query_with_sql(connection, sql):
         try:
@@ -55,7 +55,7 @@ class DBHandler:
         except Error as e:
             print(f"Error executing query: {e}")
             return None
-
+    #only insert query
     @staticmethod
     def insert(connection, table, data):
         try:
@@ -98,8 +98,7 @@ class DBHandler:
         except Error as e:
             print(f"Error inserting data: {e}")
             return None
-        
-        
+    #update query
     @staticmethod
     def update(connection, table, data, where):
         try:
@@ -112,7 +111,7 @@ class DBHandler:
         except Error as e:
             print(f"Error updating data: {e}")
             return None
-
+    #delete query
     @staticmethod
     def delete(connection, table, where):
         try:
@@ -126,7 +125,29 @@ class DBHandler:
         except Error as e:
             print(f"Error deleting data: {e}")
             return None
+    #procedure call
+    @staticmethod
+    def call_procedure(connection, procedure_name, args=None):
+        try:
+            # Create a cursor object to interact with the database
+            cursor = connection.cursor()
 
+            # Call the stored procedure
+            cursor.callproc(procedure_name, args)
+
+            # Fetch all results from the procedure
+            results = []
+            for result in cursor.stored_results():
+                results.append(result.fetchall())
+
+            # Commit changes if any
+            connection.commit()
+
+            # Return the fetched results
+            return results
+        except mysql.connector.Error as e:
+            print(f"Error calling stored procedure: {e}")
+            return None
     @staticmethod
     def mysql_to_array(result):
         try:

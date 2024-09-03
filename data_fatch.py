@@ -68,6 +68,20 @@ def main():
         else:
             print("No rows were updated.")
 
+        # Define the name of the stored procedure and its arguments
+        procedure_name = 'your_procedure_name'
+        procedure_args = (1, 'John Doe')  # Example arguments, replace with actual values
+
+        # Call the stored procedure
+        results = DBHandler.call_procedure(connection, procedure_name, procedure_args)
+        
+        if results:
+            print("Stored procedure executed successfully. Results:")
+            for result in results:
+                print(result)
+        else:
+            print("Failed to execute stored procedure.")
+
 
         # Close the database connection
         connection.close()
