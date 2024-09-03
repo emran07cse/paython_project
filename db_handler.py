@@ -69,7 +69,37 @@ class DBHandler:
         except Error as e:
             print(f"Error inserting data: {e}")
             return None
+    #bulk data insert into db
+    @staticmethod
+    def bulk_insert(connection, table, data):
+        try:
+            cursor = connection.cursor()
+            
+            # Ensure data is a list of dictionaries for bulk insert
+            if not isinstance(data, list) or not all(isinstance(d, dict) for d in data):
+                raise ValueError("Data should be a list of dictionaries.")
 
+            # Prepare fields and values
+            fields = ', '.join(data[0].keys())
+            values = ', '.join(['%s'] * len(data[0]))
+
+            # Prepare SQL query
+            query = f"INSERT INTO {table} ({fields}) VALUES ({values})"
+
+            # Extract all values from data
+            values_list = [tuple(d.values()) for d in data]
+
+            # Perform bulk insert using executemany
+            cursor.executemany(query, values_list)
+            connection.commit()
+            
+            print(f"{cursor.rowcount} rows inserted successfully.")
+            return cursor.rowcount
+        except Error as e:
+            print(f"Error inserting data: {e}")
+            return None
+        
+        
     @staticmethod
     def update(connection, table, data, where):
         try:
