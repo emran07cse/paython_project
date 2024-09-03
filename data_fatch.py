@@ -86,5 +86,51 @@ def main():
         # Close the database connection
         connection.close()
 
+
+
+    # query execution with transaction for secure query excution add
+    # if connection:
+    #     try:
+    #         # Start a transaction
+    #         DBHandler.start_transaction(connection)
+            
+    #         # Define the data to be inserted (a list of dictionaries)
+    #         data_to_insert = [
+    #             {'id': 1, 'name': 'John Doe', 'email': 'john@example.com'},
+    #             {'id': 2, 'name': 'Jane Smith', 'email': 'jane@example.com'},
+    #             {'id': 3, 'name': 'Alice Johnson', 'email': 'alice@example.com'},
+    #         ]
+            
+    #         # Perform bulk insert
+    #         rows_inserted = DBHandler.bulk_insert(connection, "users", data_to_insert)
+            
+    #         if rows_inserted:
+    #             print(f"{rows_inserted} rows inserted successfully.")
+    #         else:
+    #             print("Failed to insert data.")
+            
+    #         # Define the data to be updated
+    #         data_to_update = {'email': 'newjohn@example.com'}
+    #         where_clause = "id = 1"  # Update the user with ID 1
+            
+    #         # Perform the update
+    #         rows_updated = DBHandler.update(connection, "users", data_to_update, where_clause)
+            
+    #         if rows_updated:
+    #             print(f"{rows_updated} rows updated successfully.")
+    #         else:
+    #             print("No rows were updated.")
+            
+    #         # Commit the transaction
+    #         DBHandler.commit_transaction(connection)
+    #     except Exception as e:
+    #         # Rollback the transaction in case of an error
+    #         DBHandler.rollback_transaction(connection)
+    #         print(f"Transaction failed: {e}")
+    #     finally:
+    #         # Close the database connection
+    #         connection.close()
+
+
 if __name__ == "__main__":
     main()

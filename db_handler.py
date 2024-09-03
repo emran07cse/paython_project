@@ -26,6 +26,28 @@ class DBHandler:
             print(f"Error: {e}")
             return None
 
+    #bd transactoin add for secuare trsaction
+    @staticmethod
+    def start_transaction(connection):
+        try:
+            connection.start_transaction()
+        except mysql.connector.Error as e:
+            print(f"Error starting transaction: {e}")
+
+    @staticmethod
+    def commit_transaction(connection):
+        try:
+            connection.commit()
+        except mysql.connector.Error as e:
+            print(f"Error committing transaction: {e}")
+
+    @staticmethod
+    def rollback_transaction(connection):
+        try:
+            connection.rollback()
+        except mysql.connector.Error as e:
+            print(f"Error rolling back transaction: {e}")
+    #===================end =====================
     @staticmethod
     def query(connection, table, fields='*', where='', order='', limit=10, page=1):
         try:
