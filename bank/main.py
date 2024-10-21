@@ -182,7 +182,10 @@ def main():
                 withdraw(user_id)
             elif choice == '4':
                 user_id = None
+                print("*****************************************************************************")
+                print("Thank you for using this banking system")
                 print("Logged out.")
+                print("*****************************************************************************")
             else:
                 print("Please enter a valid option.")
 
