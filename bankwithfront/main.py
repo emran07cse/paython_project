@@ -30,7 +30,15 @@ def register():
     cursor = conn.cursor()
 
     try:
+        # Insert the new user and get the user_id
+
         cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+
+        # Fetch the user_id from the result
+        user_id = cursor.fetchone()[0]
+
+        # Now insert the user_id into the accounts table for balance
+        cursor.execute("INSERT INTO accounts (user_id) VALUES (%s)", (user_id,))
         conn.commit()
         return jsonify({"message": "User registered successfully!"}), 201
     except mysql.connector.IntegrityError as e:
@@ -72,6 +80,8 @@ def deposit():
     conn = connect_to_db()
     cursor = conn.cursor()
     cursor.execute("UPDATE accounts SET balance = balance + %s WHERE user_id=%s", (amount, user_id))
+    cursor.execute("INSERT INTO deposite (user_id, deposite_amount) VALUES (%s, %s)", (user_id, amount))
+    
     conn.commit()
     cursor.close()
     conn.close()
@@ -89,7 +99,24 @@ def show_balance(user_id):
     if result:
         return jsonify({"balance": result[0]}), 200
     else:
+        # cursor.execute("INSERT INTO accounts (user_id) VALUES (%s)", (user_id,))
+        # conn.commit()
+        
+        # cursor.execute("SELECT balance FROM accounts WHERE user_id=%s", (user_id,))
+        # result = cursor.fetchone()
+        # return jsonify({"balance": result[0]}), 200
         return jsonify({"error": "No account found for this user."}), 404
+    
+
+    # Create an account for a new user
+def create_account(user_id):
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO accounts (user_id) VALUES (%s)", (user_id,))
+    conn.commit()
+    print("Account created successfully.")
+    cursor.close()
+    conn.close()
 
 @app.route('/withdraw', methods=['POST'])
 def withdraw():
@@ -103,6 +130,7 @@ def withdraw():
     cursor = conn.cursor()
 
     cursor.execute("UPDATE accounts SET balance = balance - %s WHERE user_id=%s", (amount, user_id))
+    cursor.execute("INSERT INTO withdraw (user_id, withdraw_amount) VALUES (%s, %s)", (user_id, amount))
     conn.commit()
     cursor.close()
     conn.close()
