@@ -1,0 +1,144 @@
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bKash: Merchant Portal</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link href="js/app.js" rel="preload" as="script"><link href="js/chunk-vendors.js" rel="preload" as="script">
+    <style>
+        html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5; /* Optional: Change background color */
+}
+
+#app {
+    width: 100%;
+}
+
+.login_page_form_section {
+    max-width: 400px; /* Set the form's max width */
+    width: 100%; 
+}
+
+.card {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.text-center {
+    margin-bottom: 20px;
+}
+
+footer.common_footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #666;
+}
+
+    </style>
+    <body cz-shortcut-listen="true">
+        <div id="app" data-v-app="">
+            <div>
+                <div tabindex="0" class="vld-overlay is-active is-full-page" aria-busy="false" aria-label="Loading" style="display: none;">
+                    <div class="vld-background" style="backdrop-filter: blur(2px);"></div>
+                    <div class="vld-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" height="40" width="40" fill="#000">
+                            <rect x="0" y="13" width="4" height="5">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="10" y="13" width="4" height="5">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                            <rect x="20" y="13" width="4" height="5">
+                                <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                            </rect>
+                        </svg>
+                    </div>
+                </div><!--v-if-->
+                <div class="login_page" data-v-3f852ca0="">
+                    <div tabindex="0" class="vld-overlay is-active is-full-page" aria-busy="false" aria-label="Loading" data-v-3f852ca0="" style="display: none;">
+                        <div class="vld-background" style="backdrop-filter: blur(2px);"></div>
+                        <div class="vld-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" height="40" width="40" fill="#000">
+                                <rect x="0" y="13" width="4" height="5">
+                                    <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                    <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                </rect>
+                                <rect x="10" y="13" width="4" height="5">
+                                    <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                    <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                </rect>
+                                <rect x="20" y="13" width="4" height="5">
+                                    <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                    <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                </rect>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="login_page_form_section" data-v-3f852ca0="">
+                        <div class="pt-3 pb-3" data-v-3f852ca0="">
+                            <div class="text-center" data-v-3f852ca0="">
+                                <a href=""><img id="logo-only" src="img/only-logo.78463dd4.png" alt=""></a>
+                                <h3>Welcome</h3><p class="text-secondary"> Welcome to bKash PGW Integration Platform </p>
+                            </div>
+                        </div><!-- <hr> -->
+                        <div class="card login_form_card" data-v-3f852ca0="">
+                            <div class="login_form_card_title" data-v-3f852ca0="">
+                                <h3 class="pt-2" data-v-3f852ca0="">Sign In</h3>
+                                <p class="text-secondary" data-v-3f852ca0="" style="font-size: 0.7em; font-style: italic;">Please enter your merchant wallet number and password to sign in</p>
+                            </div>
+                            <form data-v-3f852ca0="">
+                                <div class="mb-4" data-v-3f852ca0="">
+                                    <label for="InputUsername" class="form-label login_form_card_label" data-v-3f852ca0="">bKash Merchant Wallet Number</label>
+                                    <div class="position-relative" data-v-3f852ca0="">
+                                        <input type="tel" maxlength="11" class="form-control custom_input ps_2rem" id="InputUsername" placeholder="01XXXXXXXX" required="" data-v-3f852ca0="">
+                                        <i class="bi bi-phone phone_icon" data-v-3f852ca0=""></i>
+                                    </div>
+                                    <p class="text-danger" data-v-3f852ca0=""></p>
+                                </div>
+                                <div class="mb-4" data-v-3f852ca0="">
+                                    <label for="InputPassword" class="form-label login_form_card_label" data-v-3f852ca0="">Password</label>
+                                    <div class="position-relative" data-v-3f852ca0="">
+                                        <input id="InputPassword" type="password" class="form-control custom_input" placeholder="......" required="" data-v-3f852ca0="">
+                                        <span class="icon" data-v-3f852ca0=""><i class="fas text-secondary pointer fa-eye-slash" data-v-3f852ca0=""></i></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3" data-v-3f852ca0="">
+                                    <div class="form-check" data-v-3f852ca0="">
+                                        <input class="form-check-input" type="checkbox" id="RememberMe" value="" data-v-3f852ca0="">
+                                        <label class="form-check-label" for="RememberMe" data-v-3f852ca0=""> Remember Me </label>
+                                        <a class="float-end forget_pass_btn" data-v-3f852ca0="">Forgot password?</a>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center" data-v-3f852ca0=""><input type="button" class="btn_b_global" value="Sign in" data-v-3f852ca0=""></div>
+                            </form>
+                            <p data-v-3f852ca0="" style="text-decoration: none !important; font-weight: normal; color: black; text-align: center;"> Don't have an account?
+                                <a class="btn btn-link btn-sm" data-v-3f852ca0="" style="text-decoration: none !important; font-weight: normal; color: black;">
+                                    <b data-v-3f852ca0="" style="text-decoration: underline !important; font-weight: bold; color: rgb(226, 19, 110);">Sign Up</b>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <footer class="common_footer d-flex justify-content-center" data-v-83b37fbc="">
+                    <p class="mb-0 text_11px" data-v-83b37fbc=""> © 2024&nbsp;bKash, a BRAC Bank Company. All rights reserved </p>
+                </footer>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/chunk-vendors.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    <div data-v-app=""></div>
+    </body>
+</html>

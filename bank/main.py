@@ -54,7 +54,7 @@ def login():
     user = cursor.fetchone()
     
     if user:
-        print("Login successful!")
+        # print("Login successful!")
         return user[0]  # Return the user ID
     else:
         print("Invalid username or password.")
@@ -157,7 +157,7 @@ def main():
                     # Check if the user has an account; if not, create one
                     # create_account(user_id)
                     print("\nUser not found")
-                    print("\nPlease registe a user")
+                    print("\nPlease register a user")
             elif choice == '3':
                 is_running = False
                 print("*****************************************************************************")

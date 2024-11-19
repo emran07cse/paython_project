@@ -64,9 +64,9 @@ def login():
     user = cursor.fetchone()
 
     if user:
-        return jsonify({"message": "Login successful!", "user_id": user[0]}), 200
+        return jsonify({"code":"200","message": "Login successful!", "user_id": user[0]}), 200
     else:
-        return jsonify({"error": "Invalid username or password."}), 401
+        return jsonify({"code":"210","message": "Invalid username or password.","user_id": ''}), 401
 
 # Deposit endpoint
 @app.route('/deposit', methods=['POST'])

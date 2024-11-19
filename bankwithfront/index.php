@@ -1,3 +1,18 @@
+
+
+<?php
+
+session_start();
+session_destroy();
+session_start();
+// Set session expiration time (in seconds)
+// $session_duration = 600; // 10 minutes
+// $session_expire_time = time() + $session_duration; // Current time + session duration
+
+
+// $_SESSION['user_id'] = $user_id;
+// $_SESSION['session_expire'] = $session_expire_time;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +21,70 @@
     <title>Banking System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
+    <link rel="stylesheet" href="css/common.css">
 </head>
-<body>
-    <h2>Login</h2>
-    <form id="loginForm">
+<body cz-shortcut-listen="true">
+    <div id="app" data-v-app="">
+        <div>
+            <!-- <form id="loginForm" action="login.php" method="post"> -->
+            <form action="login.php" method="post">
+                <div class="login_page" >
+                    <div class="login_page_form_section" >
+                        <div class="pt-3 pb-3" >
+                            <div class="text-center" >
+                                <a href=""><img id="logo-only" src="img/only-logo.78463dd4.png" alt=""></a>
+                                <h3>Welcome</h3><p class="text-secondary"> Welcome to Banking System Platform </p>
+                            </div>
+                        </div><!-- <hr> -->
+                        <div class="card login_form_card" >
+                            <div class="login_form_card_title" >
+                                <h3 class="pt-2" >Sign In</h3>
+                                <p class="text-secondary"  style="font-size: 0.7em; font-style: italic;">Please enter your merchant wallet number and password to sign in</p>
+                            </div>
+                            <form >
+                                <div class="mb-4" >
+                                    <label for="InputUsername" class="form-label login_form_card_label" >Username:</label>
+                                    <div class="position-relative" >
+                                        <input type="tel" maxlength="11" class="form-control custom_input ps_2rem" id="loginUsername" name="username" required="" >
+                                        <!-- <input type="text" id="loginUsername" name="username" required><br><br> -->
+
+                                        <!-- <i class="bi bi-phone phone_icon" ></i> -->
+                                    </div>
+                                    <p class="text-danger" ></p>
+                                </div>
+                                <div class="mb-4" >
+                                    <label for="InputPassword" class="form-label login_form_card_label" >Password</label>
+                                    <div class="position-relative" >
+                                        <input id="loginPassword" name="password" type="password" class="form-control custom_input" placeholder="......" required="" >
+                                        <!-- <span class="icon" ><i class="fas text-secondary pointer fa-eye-slash" ></i></span> -->
+                                    </div>
+                                </div>
+                                <div class="mb-3" >
+                                    <div class="form-check" >
+                                        <input class="form-check-input" type="checkbox" id="RememberMe" value="" >
+                                        <label class="form-check-label" for="RememberMe" > Remember Me </label>
+                                        <a class="float-end forget_pass_btn" >Forgot password?</a>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center" >
+                                    <input type="submit" class="btn_b_global" value="Sign in" ></div>
+                            </form>
+                            <p  style="text-decoration: none !important; font-weight: normal; color: black; text-align: center;"> Don't have an account?
+                                <a class="btn btn-link btn-sm"  style="text-decoration: none !important; font-weight: normal; color: black;">
+                                    <b  style="text-decoration: underline !important; font-weight: bold; color: rgb(226, 19, 110);">Sign Up</b>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <footer class="common_footer d-flex justify-content-center" data-v-83b37fbc="">
+                <p class="mb-0 text_11px" data-v-83b37fbc=""> © <?php echo date('Y')?>&nbsp; All rights reserved </p>
+            </footer>
+        </div>
+    </div>
+    <h2></h2>
+    <!-- <form id="loginForm">
         <label for="loginUsername">Username:</label>
         <input type="text" id="loginUsername" name="username" required><br><br>
 
@@ -18,7 +92,7 @@
         <input type="password" id="loginPassword" name="password" required><br><br>
 
         <input type="submit" value="Login">
-    </form>
+    </form> -->
 
     <div id="dashboard" style="display: none;">
         <h2>You are in Home </h2>
@@ -28,7 +102,7 @@
         <button id="openModalBtn">Update Customer profile</button>
         <p id="balanceInfo"></p>
     </div>
-    <div id="customerModal" class="modal">
+    <!-- <div id="customerModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Customer Information</h2>
@@ -38,7 +112,7 @@
             <input type="email" id="email" required>
             <button onclick="profile()">Upload profile</button>
         </div>
-    </div>
+    </div> -->
 <script>
 
 document.getElementById("openModalBtn").onclick = function() {
@@ -248,12 +322,29 @@ document.getElementById("openModalBtn").onclick = function() {
                 if (data.error) {
                     alert(data.error);
                 } else {
+                    alert(data.user_id);
                     // Store user_id in local storage for future requests
-                    localStorage.setItem("user_id", data.user_id);
+                    // localStorage.setItem("user_id", data.user_id);
                     
                     // Hide login form and show dashboard
-                    document.getElementById("loginForm").style.display = "none";
-                    document.getElementById("dashboard").style.display = "block";
+                    // document.getElementById("loginForm").style.display = "none";
+                    // document.getElementById("dashboard").style.display = "block";
+
+                    // similar behavior as clicking on a link
+                    //window.location.href = "dashboard.php?user_id="+data.user_id;
+
+
+                    // Set session expiration time (let's say 10 minutes from now)
+                    const sessionDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+                    const sessionExpireTime = new Date().getTime() + sessionDuration;
+                    
+                    // Store the expiration time in localStorage                    // Set user_id
+                    localStorage.setItem('user_id', data.user_id);
+                    localStorage.setItem('session_expire', data.user_id);
+                    console.log( data.user_id);
+                    // Redirect the user to the dashboard
+                    window.location.href = "dashboard.php";
+
                 }
             })
             .catch((error) => {
@@ -347,6 +438,45 @@ document.getElementById("openModalBtn").onclick = function() {
     </script>
 </body>
 </html>
+
+<style>
+
+#app {
+width: 100%;
+}
+
+.login_page_form_section {
+max-width: 400px; /* Set the form's max width */
+width: 100%; 
+}
+.login_page{
+    height: 100%;
+margin: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #f5f5f5;
+}
+.card {
+padding: 20px;
+background-color: white;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+}
+
+.text-center {
+    margin-bottom: 20px;
+}
+
+footer.common_footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #666;
+}
+
+</style>
 
 <style>
 body {
